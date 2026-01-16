@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>True Curved Image Placement</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#e6eaed;
+  font-family:'Poppins',sans-serif;
+}
+
+/* HERO */
+.hero{
+  max-width:1200px;
+  margin:40px auto;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+/* MAIN IMAGE */
+.hero-main{
+  height:520px;
+  background:url("https://picsum.photos/1600/900?random=500") center/cover no-repeat;
+  position:relative;
+}
+
+.hero-main::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.2);
+}
+
+/* TEXT */
+.hero-text{
+  position:absolute;
+  top:70px;
+  left:60px;
+  color:#fff;
+  z-index:5;
+}
+
+.hero-text h1{
+  font-size:64px;
+  margin:0;
+  font-weight:700;
+}
+
+.hero-text p{
+  margin-top:10px;
+  font-size:18px;
+}
+
+/* CURVE IMAGE AREA */
+.curve-area{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:300px;
+  z-index:3;
+}
+
+/* images container clipped by curve */
+.curve-images{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:300px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:22px;
+  padding-bottom:60px;
+  clip-path: path("M0 80 C300 30 700 160 1200 230 L1200 300 L0 300 Z");
+  background:#fff;
+}
+
+/* images */
+.curve-images img{
+  width:180px;
+  height:120px;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 14px 35px rgba(0,0,0,.3);
+}
+
+/* follow curve slope */
+.curve-images img:nth-child(1){ transform:translateY(-50px); }
+.curve-images img:nth-child(2){ transform:translateY(-35px); }
+.curve-images img:nth-child(3){ transform:translateY(-10px); }
+.curve-images img:nth-child(4){ transform:translateY(15px); }
+.curve-images img:nth-child(5){ transform:translateY(30px); }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-main{height:420px}
+  .hero-text h1{font-size:42px}
+  .curve-images img{width:140px;height:95px}
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <div class="hero-main">
+    <div class="hero-text">
+      <h1>Travel</h1>
+      <p>Route Organization<br>Schedule of Vacation</p>
+    </div>
+  </div>
+
+  <!-- CURVED IMAGE STRIP (REAL) -->
+  <div class="curve-area">
+    <div class="curve-images">
+      <img src="https://picsum.photos/400/300?random=1">
+      <img src="https://picsum.photos/400/300?random=2">
+      <img src="https://picsum.photos/400/300?random=3">
+      <img src="https://picsum.photos/400/300?random=4">
+      <img src="https://picsum.photos/400/300?random=5">
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

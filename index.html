@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Hearts Foundation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .navbar-toggler { border: none; box-shadow: none !important; }
+    .toggler-icon { width: 30px; height: 20px; position: relative; transition: .5s ease-in-out; }
+    .toggler-icon span { display: block; position: absolute; height: 3px; width: 100%; background: #ff1493; border-radius: 9px; opacity: 1; left: 0; transform: rotate(0deg); transition: .25s ease-in-out; }
+    .toggler-icon span:nth-child(1) { top: 0px; }
+    .toggler-icon span:nth-child(2) { top: 10px; }
+    .toggler-icon span:nth-child(3) { top: 20px; }
+    .navbar-toggler:not(.collapsed) .toggler-icon span:nth-child(1) { top: 10px; transform: rotate(135deg); }
+    .navbar-toggler:not(.collapsed) .toggler-icon span:nth-child(2) { opacity: 0; left: -60px; }
+    .navbar-toggler:not(.collapsed) .toggler-icon span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
+    .sticker-image {
+      filter:
+        drop-shadow(0 0 4px #f25697)
+        drop-shadow(0 0 4px #fa8bd7)
+        drop-shadow(0 0 4px #c95fab)
+        drop-shadow(0 0 4px #e16ab3);
+    }
+    .hover-float:hover {
+      transform: translateY(-10px) !important;
+    }
+    .blob {
+      background: linear-gradient(135deg, #ffb6d5, #a7d7ff);
+      border-radius: 45% 55% 38% 62% / 55% 39% 61% 45%;
+      padding: 10px;
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .blob img {
+      border-radius: 20px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .social-icon:hover {
+      transform: translateY(-5px);
+      color: #ff7eb3 !important;
+    }
+    .service-card {
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+    .service-card .card-img-top {
+      height: 220px;
+      object-fit: cover;
+    }
+    .service-icon-box {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -30px auto 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    @media (min-width: 992px) {
+      .u-shape-col:nth-child(1) { margin-top: 0px; }
+      .u-shape-col:nth-child(2) { margin-top: 60px; }
+      .u-shape-col:nth-child(3) { margin-top: 120px; }
+      .u-shape-col:nth-child(4) { margin-top: 60px; }
+      .u-shape-col:nth-child(5) { margin-top: 0px; }
+    }
+    .stacked-gallery {
+      position: relative;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .stacked-card {
+      position: absolute;
+      width: 260px;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+      border: 6px solid white;
+    }
+    .stacked-card:nth-child(1) { transform: translateX(-50px) rotate(-10deg); z-index: 1; }
+    .stacked-card:nth-child(2) { transform: translateY(-20px) rotate(5deg); z-index: 2; }
+    .stacked-card:nth-child(3) { transform: translateX(50px) rotate(10deg) translateY(20px); z-index: 3; }
+    
+    .stacked-card:hover, .stacked-card.active {
+      z-index: 100 !important;
+      transform: scale(1.1) rotate(0deg) !important;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+    .hover-link {
+      transition: 0.3s;
+      display: inline-block;
+    }
+    .hover-link:hover {
+      color: #fff !important;
+      transform: translateX(5px);
+    }
+    /* Footer Styles */
+    .footer-wrap {
+      position: relative;
+      margin-top: 100px;
+      padding-top: 180px;
+    }
+    .footer-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #eaf6ff, #cfe9ff);
+      z-index: -1;
+      /* Shield Top Shape: Sides start lower, meet at a peak in the center */
+      clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
+    }
+    .footer-logo {
+      position: absolute;
+      top: -75px; /* Floats above the shield peak */
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      text-align: center;
+      padding-top: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border: 4px solid #cfe9ff;
+    }
+    .footer-logo img {
+      width: 100px;
+      height: auto;
+    }
+    .footer-content h6 {
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #1f6fd6;
+    }
+    .footer-content ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-content ul li {
+      margin-bottom: 8px;
+    }
+    .footer-content ul li a {
+      color: #555;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .footer-content ul li a:hover {
+      color: #ff1493;
+      padding-left: 5px;
+    }
+    .subscribe-box {
+      display: flex;
+      background: #fff;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .subscribe-box input {
+      border: none;
+      padding: 10px 15px;
+      width: 100%;
+      outline: none;
+    }
+    .subscribe-box button {
+      background: linear-gradient(to right, #ff1493, #87ceeb);
+      border: none;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 600;
+    }
+    .footer-bottom {
+      background: linear-gradient(to right, #abdff3,#f4afd3, #87ceeb);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+    }
+    /* Mobile Problem Section Styles */
+    @media (max-width: 991px) {
+      .mobile-problem-card {
+        position: relative;
+        padding: 15px 20px;
+        border-radius: 14px;
+        color: #fff;
+        color: #212529;
+        background: #fff;
+        /* margin-bottom removed for tighter stacking */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+      .mobile-problem-card.theme-pink {
+        background: #fff;
+        border-left: 6px solid #ff1493;
+      }
+      .mobile-problem-card.theme-blue {
+        background: #fff;
+        border-left: 6px solid #87ceeb;
+      }
+      .mobile-problem-card.theme-pink h5 { color: #ff1493; }
+      .mobile-problem-card.theme-blue h5 { color: #268eb7; }
+      .mobile-card-1 { width: 78%; margin-left: 0; }
+      .mobile-card-2 { width: 82%; margin-left: auto; margin-top: 20px; }
+      .mobile-card-3 { width: 85%; margin-left: 0; margin-top: 20px; }
+      
+      .mobile-number {
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        width: 36px;
+        height: 36px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 18px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      .theme-pink .mobile-number { color: #ff1493; }
+      .theme-blue .mobile-number { color: #87ceeb; }
+      .theme-pink .mobile-number { background: #fff0f5; color: #ff1493; }
+      .theme-blue .mobile-number { background: #e0f7fa; color: #268eb7; }
+      .mobile-problem-card p {
+        color: #6c757d;
+      }
+    }
+    /* Back to Top */
+    #backToTop {
+      position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+      background: #fff; color: #ff1493; border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; cursor: pointer; opacity: 0; visibility: hidden;
+      transition: all 0.3s; z-index: 1000; border: 2px solid transparent;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    #backToTop:hover { background: #ff1493; color: #fff; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3); }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Desktop Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light border-bottom py-3 sticky-top" style="background: linear-gradient(to right, #f8c8dc, #87ceeb);">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="Little Hearts" style="height: 100px;">
+      </a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <div class="toggler-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav ms-auto flex-row flex-wrap flex-md-nowrap justify-content-center justify-content-md-end gap-0 gap-md-5 align-items-center mt-3 mt-md-0">
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="index.html" style="color: #ff1493;">
+          <i class="bi bi-house"></i> <span class="small">Home</span>
+        </a>
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="about.html"><i class="bi bi-info-circle"></i> <span class="small">About Us</span></a>
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="gallery.html"><i class="bi bi-images"></i> <span class="small">Gallery</span></a>
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="programs.html"><i class="bi bi-calendar-event"></i> <span class="small">Our Programs</span></a>
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="donate.html"><i class="bi bi-heart-fill"></i> <span class="small">Donation</span></a>
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="volunteer.html"><i class="bi bi-people-fill"></i> <span class="small">Volunteer</span></a>
+        <a class="nav-link col-4 col-md-auto d-flex flex-column align-items-center" href="contact.html"><i class="bi bi-person-lines-fill"></i> <span class="small">Contact Us</span></a>
+      </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <div class="container-fluid p-0">
+
+    
+    
+    <!-- Home Section -->
+    <section id="home" class="container py-5">
+      <div class="row align-items-center border border-2 rounded-4 p-4 p-md-5 bg-white shadow-sm mt-4" style="border-color: #ff1493 !important;">
+        <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+          <h1 class="display-4 fw-bold" style="background: linear-gradient(to right, #ff1493, #268eb7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Little Hearts Foundation</h1>
+          <p class="lead mb-4" style="background: linear-gradient(to right, #268eb7,#ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Giving orphaned and disabled children a future filled with love, hope, and opportunity. ❤️</p>
+          <div class="d-flex gap-3 justify-content-center justify-content-md-start">
+            <a href="donate.html" class="btn btn-primary btn-lg px-4 rounded-pill text-white" style="background: linear-gradient(to right, #ef60ac, #df6ba8); border: none;">Donate Now</a>
+         
+          </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="images/hero1.png" alt="Happy Children" class="img-fluid sticker-image">
+        </div>
+      </div>
+    </section>
+    
+    <!-- Who We Are Section -->
+    <section id="who-we-are" class="container py-5">
+      <div class="row align-items-center">
+        <!-- Left Image Section -->
+        <div class="col-12 col-lg-6 text-center order-2 order-lg-1">
+          <div class="blob">
+            <img src="images/about.png" alt="Helping children" class="img-fluid">
+          </div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="col-12 col-lg-6 ps-lg-5 order-1 order-lg-2 mb-5 mb-lg-0">
+          <h2 class="display-5 fw-bold mb-4" style="color: #ff1493;">Who We Are</h2>
+          
+          <p class="lead text-secondary mb-4">
+            A dedicated NGO working tirelessly for <span class="text-dark fw-semibold">orphans, disabled children, and vulnerable girls.</span>
+          </p>
+          <p class="text-muted mb-4">
+            At Little Hearts Foundation, we believe that every child deserves a chance to dream. Our holistic approach goes beyond basic needs, focusing on emotional well-being and skill development to empower the next generation. We strive to build a compassionate community where love heals wounds and opportunities create leaders.
+          </p>
+          
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="p-3 rounded-3 bg-white shadow-sm d-flex align-items-center border-start border-4 h-100" style="border-color: #ff1493 !important;">
+                <i class="bi bi-heart-fill me-3 fs-5" style="color: #ff1493;"></i>
+                <span class="text-secondary small">Providing <strong class="text-dark">food, shelter, & education</strong>.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 rounded-3 bg-white shadow-sm d-flex align-items-center border-start border-4 h-100" style="border-color: #87ceeb !important;">
+                <i class="bi bi-activity me-3 fs-5" style="color: #87ceeb;"></i>
+                <span class="text-secondary small">Ensuring <strong class="text-dark">medical care & emotional support</strong>.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 rounded-3 bg-white shadow-sm d-flex align-items-center border-start border-4 h-100" style="border-color: #ff1493 !important;">
+                <i class="bi bi-stars me-3 fs-5" style="color: #ff1493;"></i>
+                <span class="text-secondary small">Creating a future where <strong class="text-dark">no child is left behind</strong>.</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-center p-3 rounded-3 shadow-sm h-100 border-start border-4" style="background: linear-gradient(to right, #e0f7fa, #fff); border-color: #268eb7 !important;">
+                 <i class="bi bi-patch-check-fill fs-3 me-3" style="color: #268eb7;"></i>
+                 <div class="text-start">
+                   <h6 class="fw-bold mb-0 text-dark small">Government Registered</h6>
+                   <small class="text-muted" style="font-size: 0.75rem;">80G & CSR Eligible NGO</small>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section id="problem" class="container py-5">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-5" style="color: #ff1493;">The Invisible Children</h2>
+          <p class="lead text-secondary mx-auto" style="max-width: 700px;">Thousands of children live without family, education, or medical care. Disabled children are often rejected and left without any support.</p>
+        </div>
+        
+        <div class="row justify-content-center position-relative d-none d-lg-flex">
+          <!-- Arc Graphic (Desktop) -->
+          <div class="d-none d-lg-block position-absolute start-0 top-50 translate-middle-y" style="width: 100px; height: 85%; border: 15px solid #f8c8dc; border-left: 0; border-radius: 0 200px 200px 0; left: 5% !important;"></div>
+
+          <div class="col-lg-10 position-relative" style="z-index: 1;">
+            
+            <!-- Item 1 -->
+            <div class="d-flex align-items-center mb-5 ms-lg-4">
+              <div class="d-none d-lg-block" style="width: 60px; height: 5px; background: #ff1493; margin-right: 20px;"></div>
+              <div class="card border-0 shadow-sm p-4 w-100 rounded-4 d-flex flex-row align-items-center hover-float" style="border-left: 6px solid #ff1493 !important;">
+                <div class="me-4 flex-shrink-0">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background-color: #fff0f5;">
+                    <i class="bi bi-heartbreak-fill fs-1" style="color: #ff1493;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="fw-bold" style="color: #ff1493;">Orphaned Children</h4>
+                  <p class="text-muted mb-0">Growing up without parental love, guidance, or a safety net. They face emotional trauma and struggle to access basic necessities like food and education.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="d-flex align-items-center mb-5 ms-lg-5 ps-lg-5">
+              <div class="d-none d-lg-block" style="width: 150px; height: 5px; background: #87ceeb; margin-right: 20px;"></div>
+              <div class="card border-0 shadow-sm p-4 w-100 rounded-4 d-flex flex-row align-items-center hover-float" style="border-left: 6px solid #87ceeb !important;">
+                <div class="me-4 flex-shrink-0">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background-color: #e0f7fa;">
+                    <i class="bi bi-person-wheelchair fs-1" style="color: #268eb7;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="fw-bold" style="color: #268eb7;">Disabled & Abandoned</h4>
+                  <p class="text-muted mb-0">Often left behind due to lack of resources, stigma, and specialized care. Without proper therapy and inclusion, they are isolated from society.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="d-flex align-items-center mb-5 ms-lg-5">
+              <div class="d-none d-lg-block" style="width: 100px; height: 5px; background: #ff1493; margin-right: 20px;"></div>
+              <div class="card border-0 shadow-sm p-4 w-100 rounded-4 d-flex flex-row align-items-center hover-float" style="border-left: 6px solid #ff1493 !important;">
+                <div class="me-4 flex-shrink-0">
+                  <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background-color: #fff0f5;">
+                    <i class="bi bi-house-slash-fill fs-1" style="color: #ff1493;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="fw-bold" style="color: #ff1493;">Girls Without Shelter</h4>
+                  <p class="text-muted mb-0">Vulnerable to exploitation and unsafe living conditions without protection. They are at high risk of abuse and denied their fundamental right to dignity and safety.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Mobile View (Custom Card Layout) -->
+        <div class="d-lg-none position-relative pb-4">
+           <!-- Card 1 -->
+           <div class="mobile-problem-card theme-pink mobile-card-1">
+             <div class="mobile-number"><i class="bi bi-heartbreak-fill"></i></div>
+             <h5 class="fw-bold mb-2">Orphaned Children</h5>
+             <p class="small mb-0">Growing up without parental love, guidance, or a safety net.</p>
+           </div>
+
+           <!-- Card 2 -->
+           <div class="mobile-problem-card theme-blue mobile-card-2">
+             <div class="mobile-number"><i class="bi bi-person-wheelchair"></i></div>
+             <h5 class="fw-bold mb-2">Disabled & Abandoned</h5>
+             <p class="small mb-0">Often left behind due to lack of resources, stigma, and specialized care.</p>
+           </div>
+
+           <!-- Card 3 -->
+           <div class="mobile-problem-card theme-pink mobile-card-3">
+             <div class="mobile-number"><i class="bi bi-house-slash-fill"></i></div>
+             <h5 class="fw-bold mb-2">Girls Without Shelter</h5>
+             <p class="small mb-0">Vulnerable to exploitation and unsafe living conditions without protection.</p>
+           </div>
+        </div>
+    </section>
+
+    <!-- Why This Matters Section -->
+    <section id="impact" class="position-relative py-5 my-0 my-md-5 overflow-hidden" style="background: linear-gradient(135deg, #fff0f5 0%, #e0f7fa 100%);">
+      <!-- Top Wave -->
+      <div class="position-absolute top-0 start-0 w-100" style="line-height: 0;">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="width: 100%; height: 80px;">
+          <path fill="#f8f9fa" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+        </svg>
+      </div>
+
+      <div class="container position-relative py-4">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h2 class="fw-bold mb-4" style="color: #268eb7;">Why This Matters</h2>
+            <p class="lead mb-4">Childhood without care leads to crime, poverty, and illness. A small intervention now prevents lifetime suffering.</p>
+            <p class="text-secondary mb-4">Every child deserves a chance to grow up in a safe environment. By providing education, healthcare, and emotional support, we break the cycle of poverty and empower the next generation to build a better future.</p>
+            <div class="p-4 bg-white rounded-3 shadow-sm d-inline-block border-start border-4" style="border-color: #ff1493 !important;">
+              <h4 class="fst-italic mb-0" style="color: #ff1493;">“A child saved today becomes a productive citizen tomorrow.”</h4>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="stacked-gallery">
+              <img src="images/whywe3.jpg" class="stacked-card" alt="Impact 1">
+              <img src="images/whywe2.jpg" class="stacked-card" alt="Impact 2">
+              <img src="images/whywe1.jpg" class="stacked-card" alt="Impact 3">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Wave -->
+      <div class="position-absolute bottom-0 start-0 w-100" style="line-height: 0;">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="width: 100%; height: 80px;">
+          <path fill="#f8f9fa" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    
+
+    <!-- What We Do Section -->
+    <section id="what-we-do" class="container py-5 mb-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold" style="color: #268eb7;">What We Do</h2>
+        <p class="text-secondary">We provide comprehensive support to nurture every child.</p>
+      </div>
+      <div class="row g-4 justify-content-center align-items-start">
+        <!-- Card 1 -->
+        <div class="col-12 col-md-6 col-lg u-shape-col">
+          <div class="card h-100 border-0 shadow-sm service-card rounded-4 overflow-hidden">
+            <img src="images/sheleter.jpeg" class="card-img-top" alt="Shelter">
+            <div class="card-body text-center pt-0 position-relative">
+              <div class="service-icon-box">
+                <span class="fs-4">🏠</span>
+              </div>
+              <h6 class="fw-bold mt-2">Shelter</h6>
+              <p class="small text-muted mb-2">Providing a safe, nurturing environment where children feel loved, protected, and at home.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-12 col-md-6 col-lg u-shape-col">
+          <div class="card h-100 border-0 shadow-sm service-card rounded-4 overflow-hidden">
+            <img src="images/food.jpg" class="card-img-top" alt="Food">
+            <div class="card-body text-center pt-0 position-relative">
+              <div class="service-icon-box">
+                <span class="fs-4">🍲</span>
+              </div>
+              <h6 class="fw-bold mt-2">Food</h6>
+              <p class="small text-muted mb-2">Delivering nutritious, balanced meals daily to ensure physical health and proper development.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-12 col-md-6 col-lg u-shape-col">
+          <div class="card h-100 border-0 shadow-sm service-card rounded-4 overflow-hidden">
+            <img src="images/education1.jpg" class="card-img-top" alt="Education">
+            <div class="card-body text-center pt-0 position-relative">
+              <div class="service-icon-box">
+                <span class="fs-4">📚</span>
+              </div>
+              <h6 class="fw-bold mt-2">Education</h6>
+              <p class="small text-muted mb-2">Offering quality schooling and skill development to empower young minds for a brighter tomorrow.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-12 col-md-6 col-lg u-shape-col">
+          <div class="card h-100 border-0 shadow-sm service-card rounded-4 overflow-hidden">
+            <img src="images/medicine.jpeg" class="card-img-top" alt="Medical">
+            <div class="card-body text-center pt-0 position-relative">
+              <div class="service-icon-box">
+                <span class="fs-4">🏥</span>
+              </div>
+              <h6 class="fw-bold mt-2">Medical</h6>
+              <p class="small text-muted mb-2">Ensuring regular health checkups, vaccinations, and specialized treatments for every child's well-being.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col-12 col-md-6 col-lg u-shape-col">
+          <div class="card h-100 border-0 shadow-sm service-card rounded-4 overflow-hidden">
+            <img src="images/care.jpg" class="card-img-top" alt="Disability Care">
+            <div class="card-body text-center pt-0 position-relative">
+              <div class="service-icon-box">
+                <span class="fs-4">♿</span>
+              </div>
+              <h6 class="fw-bold mt-2">Disability</h6>
+              <p class="small text-muted mb-2">Providing tailored therapy, assistive devices, and inclusive care for children with special needs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer-wrap">
+    <div class="footer-bg"></div>
+    <!-- Floating Logo -->
+    <div class="footer-logo">
+      <img src="images/logo.png" alt="Logo">
+    </div>
+  
+    <!-- Footer Content -->
+    <div class="container footer-content">
+      <div class="row gy-4 text-center">
+  
+        <div class="col-md-3">
+          <h6>Little Hearts Foundation</h6>
+          <p class="text-muted small">Giving orphaned and disabled children a future filled with love, hope, and opportunity.</p>
+          <p class="mb-1">📍 123 NGO Street, City</p>
+          <p class="mb-1">📞 +1 234 567 890</p>
+          <p>✉️ info@littlehearts.org</p>
+        </div>
+  
+        <div class="col-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-6 col-md-3">
+          <h6>Support</h6>
+          <ul>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-md-3">
+          <h6>Follow Us</h6>
+          <div class="mt-3">
+              <a href="#" class="text-primary me-2 fs-5"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2 fs-5"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger me-2 fs-5"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      © 2024 Little Hearts Foundation. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div id="backToTop"><i class="bi bi-arrow-up-short"></i></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.stacked-card');
+      let currentIndex = 0;
+
+      setInterval(() => {
+        cards.forEach(c => c.classList.remove('active'));
+        cards[currentIndex].classList.add('active');
+        currentIndex = (currentIndex + 1) % cards.length;
+      }, 2000);
+    });
+
+    // Back to Top Logic
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        document.getElementById('backToTop').classList.add('show');
+      } else {
+        document.getElementById('backToTop').classList.remove('show');
+      }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

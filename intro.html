@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Little Hearts Foundation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body class="vh-100 d-flex align-items-center justify-content-center bg-white position-relative overflow-hidden">
+
+  <div class="container text-center position-relative z-1">
+
+    <!-- Curved Text -->
+    <svg viewBox="0 0 800 300" class="animate__animated animate__fadeInDown" style="width: 100%; max-width: 800px; height: auto; margin-bottom: -60px;">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#ff1493;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#87ceeb;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#ff1493;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path id="curve" d="M 50,250 Q 400,50 750,250" fill="transparent"/>
+      <path id="curveSub" d="M 100,280 Q 400,100 700,280" fill="transparent"/>
+      <text width="800">
+        <textPath href="#curve" startOffset="50%" text-anchor="middle" fill="#ff1493" font-weight="bold" font-size="50" font-family="Arial, sans-serif">
+          LITTLE HEARTS FOUNDATION
+        </textPath>
+      </text>
+      <text width="800">
+        <textPath href="#curveSub" startOffset="50%" text-anchor="middle" fill="#87ceeb" font-size="20" font-family="Arial, sans-serif" letter-spacing="1px">
+          ❤️ Giving orphaned and disabled children a future ❤️
+        </textPath>
+      </text>
+    </svg>
+
+    <!-- Kids Image -->
+    <img 
+      src="images/intro-removebg-preview (1).png" 
+      alt="Smiling Children"
+      class="img-fluid mb-4 animate__animated animate__fadeInDown"
+      style="width: 800px; max-width: 100%; cursor: pointer;"
+      onclick="goHome()"
+    >
+
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
