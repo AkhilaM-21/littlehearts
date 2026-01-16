@@ -65,6 +65,17 @@
     }
     #backToTop.show { opacity: 1; visibility: visible; }
     #backToTop:hover { background: #ff1493; color: #fff; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3); }
+
+    @media (max-width: 768px) {
+      .contact-card.d-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-card.d-flex .icon-box {
+        margin-right: 0 !important;
+        margin-bottom: 15px;
+      }
+    }
   </style>
 </head>
 <body>

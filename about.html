@@ -479,6 +479,17 @@
 
     @media (max-width: 991px) {
       .hero-title { font-size: 3rem; }
+      .feature-list-item, .mv-feature-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .feature-icon, .mv-icon-box {
+        margin-right: 0 !important;
+        margin-bottom: 15px;
+      }
+      .principle-box { text-align: center; align-items: center; }
+      .mv-content-wrapper { text-align: center; }
     }
   </style>
 </head>
@@ -522,7 +533,7 @@
   <section class="hero-wrapper">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-6" data-aos="fade-right">
+        <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right">
           <h1 class="hero-title">
             Giving orphaned & <br>
             disabled children a future.
@@ -530,7 +541,7 @@
           <p class="lead text-muted mb-4">
             We are a registered NGO (80G & CSR eligible) working tirelessly to provide food, shelter, education, and medical care to the most vulnerable.
           </p>
-          <div class="d-flex gap-3">
+          <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
             <a href="donate.html" class="btn btn-primary rounded-pill px-5 py-3 btn-floating border-0" style="background: var(--gradient-text);">Donate Now</a>
           </div>
         </div>
@@ -568,7 +579,7 @@
       <!-- Who We Are Text -->
       <div class="about-grid mb-5">
         <!-- Left Content -->
-        <div data-aos="fade-right">
+        <div data-aos="fade-right" class="text-center text-lg-start">
           <h5 class="text-secondary fw-bold text-uppercase mb-3">Who We Are</h5>
           <h2 class="display-5 fw-bold mb-4">A Sanctuary for the <span class="text-highlight">Forgotten</span></h2>
           <p class="lead text-muted mb-4">
@@ -705,7 +716,7 @@
       <div class="row align-items-center">
         
         <!-- Mission -->
-        <div class="col-lg-6 mb-5 mb-lg-0 mission-col" data-aos="fade-right">
+        <div class="col-lg-6 mb-5 mb-lg-0 mission-col text-center text-lg-start" data-aos="fade-right">
           <div class="mv-content-wrapper">
             <span class="big-letter">MISSION</span>
             <h5 class="fw-bold text-uppercase mb-2" style="color: var(--primary);">Our Mission</h5>
@@ -737,7 +748,7 @@
         </div>
 
         <!-- Vision -->
-        <div class="col-lg-6 vision-col" data-aos="fade-left">
+        <div class="col-lg-6 vision-col text-center text-lg-start" data-aos="fade-left">
           <div class="mv-content-wrapper ps-lg-5">
             <span class="big-letter">VISION</span>
             <h5 class="text-info fw-bold text-uppercase mb-2">Our Vision</h5>
@@ -748,7 +759,7 @@
               <p class="mb-0 fs-5">"We are building a future where disability is seen as diversity, and no child is ever left behind."</p>
             </div>
 
-            <div class="mt-5 d-flex gap-4">
+            <div class="mt-5 d-flex gap-4 justify-content-center justify-content-lg-start">
                <div class="text-center">
                  <h2 class="fw-bold text-dark mb-0">500+</h2>
                  <small class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">Lives Touched</small>

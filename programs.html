@@ -422,6 +422,20 @@
       .footer-logo { width: 100px; height: 100px; top: -50px; padding-top: 15px; }
       .footer-logo img { width: 60px; }
     }
+    @media (max-width: 991px) {
+      .feature-list-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .feature-icon {
+        margin-right: 0 !important;
+        margin-bottom: 15px;
+      }
+      .principle-box { text-align: center; align-items: center; }
+      .impact-card-new { text-align: center; }
+      .icon-wrapper { margin: 0 auto 1.5rem !important; }
+    }
     /* Back to Top */
     #backToTop {
       position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
@@ -470,7 +484,7 @@
   <section class="hero-wrapper">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-6" data-aos="fade-right">
+        <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right">
           <h1 class="hero-title">
             Project Vasthara: <br>
             Dignity & Hygiene.
@@ -509,7 +523,7 @@
     <div class="container">
       <div class="about-grid mb-5">
         <!-- Left Content -->
-        <div data-aos="fade-right">
+        <div data-aos="fade-right" class="text-center text-lg-start">
           <h5 class="text-secondary fw-bold text-uppercase mb-3">The Silent Crisis</h5>
           <h2 class="display-5 fw-bold mb-4">More Than Just <span class="text-highlight">Cloth</span></h2>
           <p class="lead text-muted mb-4">
