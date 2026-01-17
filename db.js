@@ -1,10 +1,11 @@
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const db = mysql.createConnection({
-  host: "localhost",          // Hostinger usually uses 'localhost'
-  user: "root",               // Replace with your Hostinger DB Username
-  password: "",               // Replace with your Hostinger DB Password
-  database: "littlehearts_db" // Replace with your Database Name
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "littlehearts_db"
 });
 
 db.connect(err => {

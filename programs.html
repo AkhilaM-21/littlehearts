@@ -322,6 +322,32 @@
     .principle-img-box:hover img {
       transform: scale(1.1);
     }
+    
+    /* --- Pinterest Grid for Vasthara --- */
+    .pin-grid {
+      column-count: 2;
+      column-gap: 15px;
+    }
+    @media (min-width: 1200px) {
+      .pin-grid { column-count: 3; }
+    }
+    .pin-item {
+      break-inside: avoid;
+      margin-bottom: 15px;
+      display: inline-block;
+      width: 100%;
+    }
+    .pin-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: block;
+    }
+    .pin-item:hover img {
+      transform: scale(1.02);
+    }
 
     /* --- Impact Section (Redesigned - Light & Clean) --- */
     .impact-section-new {
@@ -521,7 +547,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right">
           <h1 class="hero-title">
-            Project Vasthara: <br>
+            Vasthara <br>
             Dignity & Hygiene.
           </h1>
           <p class="lead text-muted mb-4">
@@ -529,11 +555,7 @@
           </p>
         </div>
         <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
-          <div class="pill-group">
-            <div class="pill-slice"></div>
-            <div class="pill-slice"></div>
-            <div class="pill-slice"></div>
-          </div>
+          <img src="images/inner.png" class="img-fluid rounded-4 shadow-lg" alt="Vasthara Project">
         </div>
       </div>
     </div>
@@ -592,18 +614,34 @@
 
         <!-- Right Content (Visual Card) -->
         <div data-aos="fade-left">
-          <div class="row g-3">
-            <div class="col-6">
-              <img src="images/vasthara1.webp" class="img-fluid rounded-4 shadow-sm w-100" style="height: 200px; object-fit: cover;" alt="Vasthara 1">
+          <div class="pin-grid">
+            <div class="pin-item">
+              <img src="images/vasthara6.png" alt="Vasthara 1">
+              
             </div>
-            <div class="col-6">
-              <img src="images/vasthara2.jpg" class="img-fluid rounded-4 shadow-sm w-100" style="height: 200px; object-fit: cover;" alt="Vasthara 2">
+            <div class="pin-item">
+              <img src="images/vasthara0.jpg" alt="Vasthara 2">
+             
             </div>
-            <div class="col-6">
-              <img src="images/vasthara23.jpeg" class="img-fluid rounded-4 shadow-sm w-100" style="height: 200px; object-fit: cover;" alt="Vasthara 3">
+            <div class="pin-item">
+              <img src="images/vasthara5.jpeg" alt="Vasthara 3">
+             
             </div>
-            <div class="col-6">
-              <img src="images/vasthara4.jpeg" class="img-fluid rounded-4 shadow-sm w-100" style="height: 200px; object-fit: cover;" alt="Vasthara 4">
+            <div class="pin-item">
+              <img src="images/vasthara4.jpeg" alt="Vasthara 4">
+              
+            </div>
+            <div class="pin-item">
+              <img src="images/vasthara1.webp" alt="Vasthara 5">
+              
+            </div>
+            <div class="pin-item">
+              <img src="images/vasthara2.jpg" alt="Vasthara 6">
+             
+            
+      
+            <div class="pin-item">
+              <img src="images/vasthara23.jpeg" alt="Vasthara">
             </div>
           </div>
         </div>
@@ -725,10 +763,10 @@
     </div>
     <div class="container footer-content">
       <div class="row gy-4 text-center">
-        <div class="col-md-3"><h6>Little Hearts Foundation</h6><p class="text-muted small">Giving orphaned and disabled children a future filled with love, hope, and opportunity.</p><p class="mb-1">📍 123 NGO Street, City</p><p class="mb-1">📞 +1 234 567 890</p><p>✉️ info@littlehearts.org</p></div>
+        <div class="col-md-3"><h6>Little Hearts Foundation</h6><p class="text-muted small">Giving orphaned and disabled children a future filled with love, hope, and opportunity.</p><p class="mb-1">📍 10-9-1, Ramarao Peta, CBCNC Compound, Kakinada</p><p class="mb-1">📞 +91 81061 34990</p><p>✉️ info@littlehearts.org</p></div>
         <div class="col-6 col-md-3"><h6>Quick Links</h6><ul><li><a href="home.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="programs.html">Our Programs</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
-        <div class="col-6 col-md-3"><h6>Support</h6><ul><li><a href="donate.html">Donate</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
-        <div class="col-6 col-md-3"><h6>Support</h6><ul><li><a href="volunteer.html">Volunteer</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+        <div class="col-6 col-md-3"><h6>Support</h6><ul><li><a href="donate.html">Donate</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="privacy.html">Privacy & Policies</a></li></ul></div>
+        <div class="col-6 col-md-3"><h6>Support</h6><ul><li><a href="volunteer.html">Volunteer</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="privacy.html">Privacy & Policies</a></li></ul></div>
         <div class="col-md-3"><h6>Follow Us</h6><div class="mt-3"><a href="#" class="text-primary me-2 fs-5"><i class="bi bi-facebook"></i></a><a href="#" class="text-info me-2 fs-5"><i class="bi bi-twitter"></i></a><a href="#" class="text-danger me-2 fs-5"><i class="bi bi-instagram"></i></a></div></div>
       </div>
     </div>

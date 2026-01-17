@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
@@ -9,11 +10,12 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors()); // Allows frontend to talk to backend
+app.use(express.static(__dirname)); // Serves your HTML/CSS/JS files
 
 // 1. Razorpay Configuration
 const razorpay = new Razorpay({
-  key_id: "YOUR_RAZORPAY_KEY_ID",     // Replace with actual Key ID
-  key_secret: "YOUR_RAZORPAY_SECRET"  // Replace with actual Key Secret
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
 // 2. Create Order Endpoint
@@ -38,7 +40,7 @@ app.post("/verify-payment", async (req, res) => {
 
   const body = razorpay_order_id + "|" + razorpay_payment_id;
   const expectedSignature = crypto
-    .createHmac("sha256", "YOUR_RAZORPAY_SECRET") // Same secret as above
+    .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
     .update(body.toString())
     .digest("hex");
 
@@ -90,13 +92,13 @@ async function sendThankYouEmail(userEmail, userName, amount) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "your-ngo-email@gmail.com", // Your Email
-      pass: "your-app-password"         // App Password (Not regular password)
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 
   let info = await transporter.sendMail({
-    from: '"Little Hearts Foundation" <your-ngo-email@gmail.com>',
+    from: `"Little Hearts Foundation" <${process.env.EMAIL_USER}>`,
     to: userEmail,
     subject: "Thank You for Your Donation! ❤️",
     html: `
@@ -115,7 +117,7 @@ async function sendThankYouEmail(userEmail, userName, amount) {
 }
 
 // Start Server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
