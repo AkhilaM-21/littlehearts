@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
-const nodemailer = require("nodemailer");
 const cors = require("cors");
 const db = require("./db");
+const mailer = require("./mailer");
 const app = express();
 
 // Middleware
@@ -64,13 +64,10 @@ app.post("/verify-payment", async (req, res) => {
         return res.status(500).json({ status: "error", message: "Database error" });
       }
 
-      // Send Email (Async - don't wait for it to respond to user)
-      if (email) {
-        sendThankYouEmail(email, name, amount);
-      }
-      
-      // Send SMS (Placeholder)
-      // sendSMS(phone, name);
+      // Send Emails
+      const mailData = { name, email, phone, amount, payment_id: razorpay_payment_id };
+      mailer.sendDonationThankYou(mailData).catch(console.error);
+      mailer.sendDonationAdminMail(mailData).catch(console.error);
 
       res.json({ status: "success" });
     });
@@ -87,34 +84,27 @@ app.get("/admin/donations", (req, res) => {
   });
 });
 
-// 4. Email Logic (Nodemailer)
-async function sendThankYouEmail(userEmail, userName, amount) {
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+// 6. Volunteer Form Route
+app.post("/volunteer", async (req, res) => {
+  try {
+    await mailer.sendVolunteerMail(req.body);
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false });
+  }
+});
 
-  let info = await transporter.sendMail({
-    from: `"Little Hearts Foundation" <${process.env.EMAIL_USER}>`,
-    to: userEmail,
-    subject: "Thank You for Your Donation! ❤️",
-    html: `
-      <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-        <h2 style="color: #ff1493;">Dear ${userName},</h2>
-        <p>Thank you for your generous donation of <strong>₹${amount}</strong>.</p>
-        <p>Your support helps us provide food, shelter, and education to children in need.</p>
-        <br>
-        <p>With gratitude,</p>
-        <p><strong>The Little Hearts Team</strong></p>
-      </div>
-    `
-  });
-
-  console.log("Email sent: %s", info.messageId);
-}
+// 7. Contact Form Route
+app.post("/contact", async (req, res) => {
+  try {
+    await mailer.sendContactMail(req.body);
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false });
+  }
+});
 
 // Start Server
 const PORT = process.env.PORT || 3000;

@@ -153,22 +153,22 @@
       <div class="col-lg-6" data-aos="fade-right">
         <div class="form-container">
           <h3 class="fw-bold mb-4">Send a Message</h3>
-          <form>
+          <form id="contactForm">
             <div class="mb-3">
               <label class="form-label fw-bold small">Your Name</label>
-              <input type="text" class="form-control" placeholder="John Doe">
+              <input type="text" name="name" class="form-control" placeholder="John Doe" required>
             </div>
             <div class="mb-3">
               <label class="form-label fw-bold small">Email Address</label>
-              <input type="email" class="form-control" placeholder="john@example.com">
+              <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
             </div>
             <div class="mb-3">
               <label class="form-label fw-bold small">Subject</label>
-              <input type="text" class="form-control" placeholder="How can I help?">
+              <input type="text" name="subject" class="form-control" placeholder="How can I help?">
             </div>
             <div class="mb-3">
               <label class="form-label fw-bold small">Message</label>
-              <textarea class="form-control" rows="5" placeholder="Write your message here..."></textarea>
+              <textarea name="message" class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
             </div>
             <button type="submit" class="btn-send">Send Message</button>
           </form>
@@ -244,6 +244,39 @@
 
     document.getElementById('backToTop').addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Handle Contact Form Submission
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Sending...';
+      btn.disabled = true;
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch('http://localhost:3000/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (res.ok) {
+          alert('Message sent successfully!');
+          e.target.reset();
+        } else {
+          alert('Failed to send message. Please try again.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error sending message.');
+      } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
     });
   </script>
 </body>

@@ -287,6 +287,49 @@
       .mobile-problem-card p {
         color: #6c757d;
       }
+
+      /* Timeline for What We Do Section on Mobile */
+      #what-we-do .row {
+        position: relative;
+      }
+      #what-we-do .row::before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; left: 25px;
+        width: 2px;
+        background: linear-gradient(to bottom, #ff1493, #87ceeb);
+      }
+      #what-we-do .u-shape-col {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 50px;
+        margin-bottom: 20px;
+        margin-top: 0 !important;
+        position: relative;
+      }
+      #what-we-do .u-shape-col::after {
+        content: '';
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        border: 4px solid #ff1493;
+        z-index: 2;
+      }
+      #what-we-do .service-card {
+        font-size: 0.9rem;
+      }
+      #what-we-do .card-img-top {
+        height: 140px;
+      }
+      #what-we-do .service-icon-box {
+        width: 50px; height: 50px; font-size: 1.2rem; margin-top: -25px;
+      }
     }
     /* Back to Top */
     #backToTop {
@@ -610,7 +653,7 @@
         <!-- Card 5 -->
         <div class="col-12 col-md-6 col-lg u-shape-col" data-aos="fade-up" data-aos-delay="500">
           <div class="card h-100 border-0 shadow-sm service-card rounded-4 overflow-hidden">
-            <img src="images/care.jpg" class="card-img-top" alt="Disability Care">
+            <img src="images/care.jpeg" class="card-img-top" alt="Disability Care">
             <div class="card-body text-center pt-0 position-relative">
               <div class="service-icon-box">
                 <span class="fs-4">♿</span>
@@ -635,7 +678,7 @@
           <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
             <div class="row g-0">
               <div class="col-md-6">
-                <img src="images/inner.png" class="img-fluid h-100" alt="Vasthara Project" style="min-height: 300px; object-fit: cover;">
+                <img src="images/v.png" class="img-fluid h-100" alt="Vasthara Project" style="min-height: 300px; object-fit: cover;">
               </div>
               <div class="col-md-6 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5">
@@ -690,7 +733,7 @@
             <li><a href="donate.html">Donate</a></li>
             <li><a href="volunteer.html">Volunteer</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
   
