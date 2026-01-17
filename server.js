@@ -63,7 +63,9 @@ app.post("/verify-payment", async (req, res) => {
       }
 
       // Send Email (Async - don't wait for it to respond to user)
-      sendThankYouEmail(email, name, amount);
+      if (email) {
+        sendThankYouEmail(email, name, amount);
+      }
       
       // Send SMS (Placeholder)
       // sendSMS(phone, name);
